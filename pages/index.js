@@ -88,7 +88,7 @@ const Index = ({ articles, navigation, settings }) => {
       withProfile={false}
     >
       <Head>
-        <title>{prismicH.asText(settings.data.name)}</title>
+        <title>CMS for Paytrix Docs</title>
       </Head>
       <Bounded size="widest">
         <ul className="grid grid-cols-1 gap-16">
