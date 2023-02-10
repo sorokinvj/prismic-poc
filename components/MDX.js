@@ -92,11 +92,11 @@ export const Heading = {
   },
   H4: (props) => {
     const id = helperConvertToKebabCase(props);
-    return <h4 className="mb-4  text-base sm:text-xl" {...props} id={id} />;
+    return <h4 className="mb-4 text-base sm:text-xl" {...props} id={id} />;
   },
   H5: (props) => {
     const id = helperConvertToKebabCase(props);
-    return <h5 className="mb-4  text-base" {...props} id={id} />;
+    return <h5 className="mb-4 text-base" {...props} id={id} />;
   },
 };
 

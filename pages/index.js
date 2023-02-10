@@ -121,5 +121,6 @@ export async function getStaticProps({ previewData }) {
       navigation,
       settings,
     },
+    fallback: "blocking",
   };
 }
