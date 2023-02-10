@@ -85,6 +85,7 @@ const Index = ({ articles, navigation, settings }) => {
       withHeaderDivider={false}
       navigation={navigation}
       settings={settings}
+      withProfile={false}
     >
       <Head>
         <title>{prismicH.asText(settings.data.name)}</title>
