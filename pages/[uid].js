@@ -5,6 +5,7 @@ import * as prismicH from "@prismicio/helpers";
 import { createClient } from "../prismicio";
 import { components } from "../slices";
 import { Layout } from "../components/Layout";
+import { mapTextToMarkdown } from "../utils";
 
 const Page = ({ page, navigation, settings }) => {
   return (
@@ -31,7 +32,7 @@ export async function getStaticProps({ params, previewData }) {
 
   return {
     props: {
-      page,
+      page: await mapTextToMarkdown(page),
       navigation,
       settings,
     },

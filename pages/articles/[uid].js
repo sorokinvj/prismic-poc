@@ -1,12 +1,12 @@
 import Head from "next/head";
 import { PrismicLink, PrismicText, SliceZone } from "@prismicio/react";
 import * as prismicH from "@prismicio/helpers";
-import { serialize } from "next-mdx-remote/serialize";
 
 import { createClient } from "../../prismicio";
 import { components } from "../../slices";
 import { Layout } from "../../components/Layout";
 import { Bounded } from "../../components/Bounded";
+import { mapTextToMarkdown } from "../../utils";
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
@@ -14,13 +14,7 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
 });
 
-const Article = ({
-  article,
-  latestArticles,
-  navigation,
-  settings,
-  mdxSource,
-}) => {
+const Article = ({ article, navigation, settings }) => {
   const date = prismicH.asDate(
     article.data.publishDate || article.first_publication_date
   );
@@ -64,31 +58,6 @@ const Article = ({
 };
 
 export default Article;
-
-const mapTextToMarkdown = async (article) => {
-  const slices = await Promise.all(
-    article.data.slices.map(async (slice) => {
-      if (slice.slice_type === "text") {
-        const markdown = await serialize(slice?.primary?.text?.[0]?.text);
-        return {
-          ...slice,
-          primary: {
-            ...slice.primary,
-            markdown,
-          },
-        };
-      }
-      return slice;
-    })
-  );
-  return {
-    ...article,
-    data: {
-      ...article.data,
-      slices,
-    },
-  };
-};
 
 export async function getStaticProps({ params, previewData }) {
   const client = createClient({ previewData });
