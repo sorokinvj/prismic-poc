@@ -1,0 +1,51 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "rich_text": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "",
+              "spans": []
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "heading1",
+            "content": {
+              "text": "Title",
+              "spans": []
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "heading3",
+            "content": {
+              "text": "Welcome",
+              "spans": []
+            },
+            "direction": "ltr"
+          },
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

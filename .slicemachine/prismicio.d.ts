@@ -57,7 +57,7 @@ interface ArticleDocumentData {
  * Slice for *Article → Slice Zone*
  *
  */
-type ArticleDocumentDataSlicesSlice = ImageSlice | QuoteSlice | TextSlice | ContactFormSlice;
+type ArticleDocumentDataSlicesSlice = ImageSlice | QuoteSlice | TextSlice | ContactFormSlice | RichTextSlice;
 /**
  * Article document from Prismic
  *
@@ -346,6 +346,45 @@ type ImageSliceVariation = ImageSliceDefault | ImageSliceWide;
  */
 export type ImageSlice = prismicT.SharedSlice<"image", ImageSliceVariation>;
 /**
+ * Primary content in Markdown → Primary
+ *
+ */
+interface TextSliceDefaultPrimary {
+    /**
+     * Text field in *Markdown → Primary*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: Text with rich formatting
+     * - **API ID Path**: text.primary.text
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    text: prismicT.RichTextField;
+}
+/**
+ * Default variation for Markdown Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `Text`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type TextSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<TextSliceDefaultPrimary>, never>;
+/**
+ * Slice variation for *Markdown*
+ *
+ */
+type TextSliceVariation = TextSliceDefault;
+/**
+ * Markdown Shared Slice
+ *
+ * - **API ID**: `text`
+ * - **Description**: `Text`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type TextSlice = prismicT.SharedSlice<"text", TextSliceVariation>;
+/**
  * Primary content in Quote → Primary
  *
  */
@@ -395,49 +434,49 @@ type QuoteSliceVariation = QuoteSliceDefault;
  */
 export type QuoteSlice = prismicT.SharedSlice<"quote", QuoteSliceVariation>;
 /**
- * Primary content in Text → Primary
+ * Primary content in RichText → Primary
  *
  */
-interface TextSliceDefaultPrimary {
+interface RichTextSliceDefaultPrimary {
     /**
-     * Text field in *Text → Primary*
+     * Rich Text field in *RichText → Primary*
      *
      * - **Field Type**: Rich Text
-     * - **Placeholder**: Text with rich formatting
-     * - **API ID Path**: text.primary.text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: rich_text.primary.rich_text
      * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
      *
      */
-    text: prismicT.RichTextField;
+    rich_text: prismicT.RichTextField;
 }
 /**
- * Default variation for Text Slice
+ * Default variation for RichText Slice
  *
  * - **API ID**: `default`
- * - **Description**: `Text`
+ * - **Description**: `RichText`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type TextSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<TextSliceDefaultPrimary>, never>;
+export type RichTextSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<RichTextSliceDefaultPrimary>, never>;
 /**
- * Slice variation for *Text*
+ * Slice variation for *RichText*
  *
  */
-type TextSliceVariation = TextSliceDefault;
+type RichTextSliceVariation = RichTextSliceDefault;
 /**
- * Text Shared Slice
+ * RichText Shared Slice
  *
- * - **API ID**: `text`
- * - **Description**: `Text`
+ * - **API ID**: `rich_text`
+ * - **Description**: `RichText`
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type TextSlice = prismicT.SharedSlice<"text", TextSliceVariation>;
+export type RichTextSlice = prismicT.SharedSlice<"rich_text", RichTextSliceVariation>;
 declare module "@prismicio/client" {
     interface CreateClient {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { ArticleDocumentData, ArticleDocumentDataSlicesSlice, ArticleDocument, NavigationDocumentData, NavigationDocumentDataLinksItem, NavigationDocument, PageDocumentData, PageDocumentDataSlicesSlice, PageDocument, SettingsDocumentData, SettingsDocument, AllDocumentTypes, ContactFormSliceDefault, ContactFormSliceVariation, ContactFormSlice, ImageSliceDefaultPrimary, ImageSliceDefault, ImageSliceWidePrimary, ImageSliceWide, ImageSliceVariation, ImageSlice, QuoteSliceDefaultPrimary, QuoteSliceDefault, QuoteSliceVariation, QuoteSlice, TextSliceDefaultPrimary, TextSliceDefault, TextSliceVariation, TextSlice };
+        export type { ArticleDocumentData, ArticleDocumentDataSlicesSlice, ArticleDocument, NavigationDocumentData, NavigationDocumentDataLinksItem, NavigationDocument, PageDocumentData, PageDocumentDataSlicesSlice, PageDocument, SettingsDocumentData, SettingsDocument, AllDocumentTypes, ContactFormSliceDefault, ContactFormSliceVariation, ContactFormSlice, ImageSliceDefaultPrimary, ImageSliceDefault, ImageSliceWidePrimary, ImageSliceWide, ImageSliceVariation, ImageSlice, TextSliceDefaultPrimary, TextSliceDefault, TextSliceVariation, TextSlice, QuoteSliceDefaultPrimary, QuoteSliceDefault, QuoteSliceVariation, QuoteSlice, RichTextSliceDefaultPrimary, RichTextSliceDefault, RichTextSliceVariation, RichTextSlice };
     }
 }

@@ -1,23 +1,23 @@
 {
-  "id": "text",
+  "id": "rich_text",
   "type": "SharedSlice",
-  "name": "Text",
-  "description": "Text",
+  "name": "RichText",
+  "description": "RichText",
   "variations": [
     {
       "id": "default",
       "name": "Default",
       "docURL": "...",
       "version": "sktwi1xtmkfgx8626",
-      "description": "Text",
+      "description": "RichText",
       "primary": {
-        "text": {
+        "rich_text": {
           "type": "StructuredText",
           "config": {
-            "label": "Text",
-            "placeholder": "Text with rich formatting",
+            "label": "Rich Text",
+            "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading1,heading2,heading3,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
           }
         }
       },

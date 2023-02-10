@@ -9,8 +9,10 @@
           {
             "type": "heading2",
             "content": {
-              "text": "Hurry"
-            }
+              "text": "Hurr",
+              "spans": []
+            },
+            "direction": "ltr"
           }
         ]
       },
