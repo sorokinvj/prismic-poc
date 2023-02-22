@@ -91,7 +91,7 @@ const Article = ({ article, navigation, settings }) => {
 
 export default Article;
 
-export async function getStaticProps({ params, previewData }) {
+export async function getServerSideProps({ params, previewData }) {
   const client = createClient({ previewData });
   const article = await client.getByUID("article", params.uid);
   const articleWithMarkdown = await mapTextToMarkdown(article);
@@ -104,16 +104,5 @@ export async function getStaticProps({ params, previewData }) {
       navigation,
       settings,
     },
-  };
-}
-
-export async function getStaticPaths() {
-  const client = createClient();
-
-  const articles = await client.getAllByType("article");
-
-  return {
-    paths: articles.map((article) => prismicH.asLink(article)),
-    fallback: "blocking",
   };
 }
