@@ -28,9 +28,8 @@ const ArticleNavigaiton = ({ article, articleUrl }) => {
     return acc;
   }, []);
 
-  console.log("ArticleNavigaiton", h2);
   return (
-    <div className="px-4 md:px-6 lg:py-12">
+    <div className="mx-auto w-full max-w-3xl px-4 md:px-0 lg:py-12">
       <ul>
         <li className="py-2 text-sm font-bold tracking-tight text-slate-400 hover:text-slate-500">
           Article navigation
