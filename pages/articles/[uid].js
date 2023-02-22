@@ -57,7 +57,7 @@ const Article = ({ article, navigation, settings }) => {
   );
 
   const router = useRouter();
-  const articleUrl = router.asPath;
+  const articleUrl = router.pathname.replace("[uid]", router.query.uid);
 
   return (
     <Layout
