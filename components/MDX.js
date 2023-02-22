@@ -219,7 +219,6 @@ export const mdxComponents = {
   // REACT COMPONENTS. Kept as a react example
   NavBlocks: (props) => <div {...props} />,
   Alert: (props) => {
-    console.log("got Alert", props.description);
     return (
       <div className="my-8 block w-full">
         <Alert {...props} />

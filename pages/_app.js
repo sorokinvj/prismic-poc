@@ -9,15 +9,25 @@ import "../styles/globals.css";
 
 const richTextComponents = {
   heading1: ({ children }) => (
-    <Heading as="h2" size="3xl" className="mb-7 mt-12 first:mt-0 last:mb-0">
+    <Heading size="3xl" className="mb-7 mt-12 first:mt-0 last:mb-0">
       {children}
     </Heading>
   ),
-  heading2: ({ children }) => (
-    <Heading as="h3" size="2xl" className="mb-7 last:mb-0">
-      {children}
-    </Heading>
-  ),
+  heading2: ({ children }) => {
+    // extract heading text from children and make it lowercase
+    const text = children[0].props.children[0].props.children
+      .toLowerCase()
+      .replace(/\W+/g, "-");
+
+    return (
+      <h2
+        id={text}
+        className="text-2xl font-bold leading-tight md:text-3xl md:leading-tight"
+      >
+        {children}
+      </h2>
+    );
+  },
   heading3: ({ children }) => (
     <Heading as="h4" size="xl" className="mb-7 last:mb-0">
       {children}

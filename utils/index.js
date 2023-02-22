@@ -1,6 +1,7 @@
 import { serialize } from "next-mdx-remote/serialize";
 
 export const mapTextToMarkdown = async (article) => {
+  console.log("mapTextToMarkdown", article);
   const slices = await Promise.all(
     article.data.slices.map(async (slice) => {
       if (slice.slice_type === "text") {

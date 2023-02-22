@@ -7,6 +7,7 @@ import { components } from "../../slices";
 import { Layout } from "../../components/Layout";
 import { Bounded } from "../../components/Bounded";
 import { mapTextToMarkdown } from "../../utils";
+import { useRouter } from "next/router";
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
@@ -14,12 +15,50 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
 });
 
+const ArticleNavigaiton = ({ article, articleUrl }) => {
+  const richTextSlices = article.data.slices.filter(
+    (slice) => slice.slice_type === "rich_text"
+  );
+
+  const h2 = richTextSlices.reduce((acc, slice) => {
+    const h2 = slice.primary?.rich_text?.filter(
+      (text) => text.type === "heading2"
+    );
+    acc = [...acc, ...h2];
+    return acc;
+  }, []);
+
+  console.log("ArticleNavigaiton", h2);
+  return (
+    <div className="px-4 md:px-6 lg:py-12">
+      <ul>
+        <li className="py-2 text-sm font-bold tracking-tight text-slate-400 hover:text-slate-500">
+          Article navigation
+        </li>
+        {h2.map((heading, index) => (
+          <li key={index}>
+            <PrismicLink
+              href={`${articleUrl}#${heading.text
+                .toLowerCase()
+                .replace(/\W+/g, "-")}`}
+              className="py-2 text-sm tracking-tight text-slate-400 hover:text-slate-500"
+            >
+              {heading.text}
+            </PrismicLink>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
 const Article = ({ article, navigation, settings }) => {
   const date = prismicH.asDate(
     article.data.publishDate || article.first_publication_date
   );
 
-  console.log("article", article);
+  const router = useRouter();
+  const articleUrl = router.asPath;
 
   return (
     <Layout
@@ -34,14 +73,7 @@ const Article = ({ article, navigation, settings }) => {
           {prismicH.asText(settings.data.name)}
         </title>
       </Head>
-      <Bounded>
-        <PrismicLink
-          href="/"
-          className="font-semibold tracking-tight text-slate-400"
-        >
-          &larr; Back to articles
-        </PrismicLink>
-      </Bounded>
+      <ArticleNavigaiton article={article} articleUrl={articleUrl} />
       <article>
         <Bounded className="pb-0">
           <h1 className="mb-3 text-3xl font-semibold tracking-tighter text-slate-800 md:text-4xl">
